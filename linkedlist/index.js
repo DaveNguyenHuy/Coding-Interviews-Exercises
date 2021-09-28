@@ -103,17 +103,25 @@ class LinkedList {
     return this.length;
   }
 
-  [Symbol.iterator]() {
+  // [Symbol.iterator]() {
+  //   let node = this.head;
+  //   return {
+  //     next() {
+  //       if (node) {
+  //         const value = node;
+  //         node = node.next;
+  //         return {value, done: false}
+  //       }
+  //       return { done: true }
+  //     }
+  //   }
+  // }
+
+  *[Symbol.iterator]() {
     let node = this.head;
-    return {
-      next() {
-        if (node) {
-          const value = node;
-          node = node.next;
-          return {value, done: false}
-        }
-        return { done: true }
-      }
+    while (node) {
+      yield node;
+      node = node.next;
     }
   }
 }
