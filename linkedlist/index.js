@@ -17,20 +17,15 @@ class LinkedList {
   }
 
   insertFirst(data) {
-    this.head = new Node(data, this.head)
-    this.length++
+    this.insertAt(data, 0)
   }
 
   getFirst() {
-    return this.head
+    return this.getAt(0)
   }
 
   getLast() {
-    let last = this.head
-    while (last && last.next) {
-      last = last.next
-    }
-    return last
+    return this.getAt(this.length-1)
   }
 
   clear() {
@@ -39,21 +34,11 @@ class LinkedList {
   }
 
   removeFirst() {
-    if (this.head) {
-      this.head = this.head.next
-      this.length--
-    }
+    this.removeAt(0);
   }
 
   removeLast() {
-    if (!this.head) return;
-    if (!this.head.next) {
-      this.head = null
-    } else {
-      const prevOfLast = this.getAt(this.length - 2);
-      prevOfLast.next = null;
-    }
-    this.length--;
+    this.removeAt(this.length);
   }
 
   getAt(index) {
@@ -67,23 +52,23 @@ class LinkedList {
   }
 
   insertLast(data) {
-    if (!this.head) {
-      return this.insertFirst(data)
-    }
-    const tail = this.getAt(this.length - 1)
-    tail.next = new Node(data, null)
-    this.length++
+    this.insertAt(data, this.length)
   }
 
   removeAt(index) {
     if (!this.head) {
-      return
+      return;
+    }
+    if (!this.head.next) {
+      this.head = null;
+      return this.length--;
     }
     if (index <= 0) {
-      return this.removeFirst()
+      this.head = this.head.next;
+      return this.length--;
     }
     if (index >= this.length - 1) {
-      return this.removeLast()
+      index = this.length-1;
     }
     const prevNode = this.getAt(index - 1);
     const nextNode = this.getAt(index+1)
@@ -93,10 +78,12 @@ class LinkedList {
 
   insertAt(data, index) {
     if (index <= 0) {
-      return this.insertFirst(data)
+      const node = new Node(data, this.head)
+      this.head = node;
+      return this.length++
     }
     if (index >= this.length -1) {
-      return this.insertLast(data)
+      index = this.length; // insert last
     }
     const prevNode = this.getAt(index - 1)
     prevNode.next = new Node(data, prevNode.next)
