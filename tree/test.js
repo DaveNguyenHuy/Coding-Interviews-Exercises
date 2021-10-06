@@ -29,7 +29,7 @@ describe('Node', () => {
   });
 });
 
-describe.skip('Tree', () => {
+describe('Tree', () => {
   test('starts empty', () => {
     const t = new Tree();
     expect(t.root).toEqual(null);
@@ -46,7 +46,7 @@ describe.skip('Tree', () => {
     t.traverseBF(node => {
       letters.push(node.data);
     });
-
+    console.log(letters)
     expect(letters).toEqual(['a', 'b', 'c', 'd']);
   });
 

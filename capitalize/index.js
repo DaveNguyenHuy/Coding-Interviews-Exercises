@@ -33,8 +33,8 @@
 // solution 3
 function capitalize(str) {
   let result = str[0].toUpperCase();
-  
-  for (c of str.slice(1)) {
+
+  for (let c of str.slice(1)) {
     const last = result.slice(-1)
     if (last === ' ') {
       result += c.toUpperCase()
