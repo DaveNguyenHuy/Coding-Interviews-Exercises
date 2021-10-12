@@ -20,7 +20,6 @@ function pyramid(n, row = 0, level= '') {
   }
 
   if (level.length === 2 * n -1) {
-    console.log(level)
     pyramid(n, row + 1)
   } else {
     level += Math.abs(level.length - n + 1) <= row ? '#' : ' '
