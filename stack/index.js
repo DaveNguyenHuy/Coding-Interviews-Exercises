@@ -20,7 +20,7 @@ class Stack {
     this.data.push(item)
   }
 
-  pop() {
+  remove() {
     return this.data.pop()
   }
 
